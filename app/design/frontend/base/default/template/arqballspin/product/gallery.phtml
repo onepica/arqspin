@@ -1,0 +1,76 @@
+<?php
+/**
+* One Pica
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to codemaster@onepica.com so we can send you a copy immediately.
+*
+* @category OnePica
+* @package OnePica_ArqballSpin
+* @copyright Copyright (c) 2012 One Pica, Inc. (http://www.onepica.com)
+* @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+*/
+/**
+* One Pica Arqball Spin
+*
+* @category OnePica
+* @package OnePica_ArqballSpin
+* @author One Pica Codemaster codemaster@onepica.com
+*/
+?>
+<?php 
+	$_image = $this->getCurrentImage();
+	$_width=$this->getImageWidth();
+?>
+<div class="product-image-popup" style="width:<?php echo $_width; ?>px;">
+    <div class="buttons-set"><a href="#" onclick="window.close(); return false;" class="button"><span><?php echo $this->__('Close Window') ?></span></a></div>
+    <?php if($this->getPreviusImageUrl() || $this->getNextImageUrl()): ?>
+        <div class="nav">
+          <?php if($_prevUrl = $this->getPreviusImageUrl()): ?>
+              <a href="<?php echo $_prevUrl ?>" class="prev">&laquo; <?php echo $this->__('Prev') ?></a>
+          <?php endif; ?>
+          <?php if($_nextUrl = $this->getNextImageUrl()): ?>
+              <a href="<?php echo $_nextUrl ?>" class="next"><?php echo $this->__('Next') ?> &raquo;</a>
+          <?php endif; ?>
+        </div>
+    <?php endif; ?>
+    <?php if($_imageTitle = $this->htmlEscape($_image->getLabel())): ?>
+        <h1 class="image-label"><?php echo $_imageTitle ?></h1>
+    <?php endif; ?>
+	<?php if ($_image->getIsArqspin()): ?>
+		<div id="product-gallery-image" class="image">
+			<iframe src="<?php echo $_image->getSpinUrl(); ?>" width="<?php echo $_width; ?>" height="<?php echo $_width; ?>" scrolling="no" frameborder="0"></iframe>
+		</div>
+	<?php else: ?>
+		<img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'image', $this->getImageFile()); ?>"<?php if($_width): ?> width="<?php echo $_width ?>"<?php endif; ?> alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>" title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" id="product-gallery-image" class="image" />
+	<?php endif; ?>
+    <div class="buttons-set"><a href="#" onclick="window.close(); return false;" class="button"><span><?php echo $this->__('Close Window') ?></span></a></div>
+    <?php if($this->getPreviusImageUrl() || $this->getNextImageUrl()): ?>
+        <div class="nav">
+          <?php if($_prevUrl = $this->getPreviusImageUrl()): ?>
+              <a href="<?php echo $_prevUrl ?>" class="prev">&laquo; <?php echo $this->__('Prev') ?></a>
+          <?php endif; ?>
+          <?php if($_nextUrl = $this->getNextImageUrl()): ?>
+              <a href="<?php echo $_nextUrl ?>" class="next"><?php echo $this->__('Next') ?> &raquo;</a>
+          <?php endif; ?>
+        </div>
+    <?php endif; ?>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+Event.observe(window, 'load', function(){
+    var demensions = $('product-gallery-image').getDimensions();
+    if (demensions.width < 300) {
+        demensions.width = 300
+    }
+    window.resizeTo(demensions.width+90, demensions.height+210);
+});
+//]]>
+</script>

@@ -64,20 +64,24 @@ class OnePica_ArqballSpin_Adminhtml_GridController extends Mage_Adminhtml_Contro
 	}
 	
 	public function getHeader() {
-		$res = '<table width="100%" border="1">';
-		$res .= '<tr>';
-		$res .= '<td width="20">&nbsp;</td>';
-		$res .= '<td width="100">ID</td>';
-		$res .= '<td>Title</td>';
-		$res .= '<td width="100">Thumbnail</td>';
+		$res = '<table id="media_gallery_content_grid" class="data border" width="100%" cellspacing="0">';
+		$res .= '<thead>';
+		$res .= '<tr class="headings">';
+		$res .= '<th width="20">&nbsp;</th>';
+		$res .= '<th width="100">ID</th>';
+		$res .= '<th>Title</th>';
+		$res .= '<th width="100">Thumbnail</th>';
 		$res .= '</tr>';
+		$res .= '</thead>';
 
+		$res .= '<tbody id="media_gallery_content_list">';
 		$res .= '<tr>';
 		$res .= '<td width="20"><input type="radio" name="product[arqballspin_id]" value="" checked></td>';
 		$res .= '<td width="100">&nbsp;</td>';
 		$res .= '<td>None</td>';
 		$res .= '<td width="100">&nbsp;</td>';
 		$res .= '</tr>';
+		$res .= '</tbody>';
 		return $res;
 	}
 	

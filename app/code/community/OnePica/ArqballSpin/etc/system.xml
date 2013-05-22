@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<!--
+/**
+* One Pica
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to codemaster@onepica.com so we can send you a copy immediately.
+*
+* @category OnePica
+* @package OnePica_ArqballSpin
+* @copyright Copyright (c) 2012 One Pica, Inc. (http://www.onepica.com)
+* @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+*/
+/**
+* One Pica Arqball Spin
+*
+* @category OnePica
+* @package OnePica_ArqballSpin
+* @author One Pica Codemaster codemaster@onepica.com
+*/
+-->
+<config>
+    <sections>
+        <arqballspin translate="label">
+            <label>Arqball Spin</label>
+            <tab>catalog</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>121</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <arqballspin_general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+						<username translate="label">
+							<label>Account Username</label>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry</validate>
+                            <sort_order>0</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								Required.
+								]]>
+							</comment>
+						</username>
+						<autoload translate="label">
+							<label>Auto load</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								Automatically load the spin on the page to prepare it for spinning.
+								Recommendation: Enabled.
+								]]>
+							</comment>
+						</autoload>
+						<autorotate translate="label">
+							<label>Auto rotate</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								Automatically start rotating the spin once it's loaded.
+								Recommendation: Enabled.
+								]]>
+							</comment>
+						</autorotate>
+						<autostop translate="label">
+							<label>Auto stop</label>
+							<frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								Automatically stop rotating the spin once it's completed a full rotation.
+								Recommendation: Enabled.
+								]]>
+							</comment>
+						</autostop>
+						<embed_type translate="label">
+							<label>Embed type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>arqballspin/system_config_general_embedtype</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								Technology used to embed the spin.
+								Recommended: IFrame.
+								]]>
+							</comment>
+						</embed_type>
+						<display_type translate="label">
+							<label>Display type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>arqballspin/system_config_general_displaytype</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								Location for the spin. <br />
+								Gallery: If a product has a spin, thumbnail is shown first or last in the list of additional images;
+								clicking on the thumbnail brings up the spin in a popup.<br />
+								Primary: Replace the primary image if a product has a spin set on it;
+								user can interact with spin on the product page.<br />
+								Separate: If a product has a spin, spin is embedded below the product image gallery;
+								user can interact with spin on the product page. Recommended: Gallery
+								]]>
+							</comment>
+						</display_type>
+						<gallery_position translate="label">
+							<label>Gallery position</label>
+							<frontend_type>select</frontend_type>
+							<source_model>arqballspin/system_config_general_galleryPosition</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								If Gallery chosen above, this determines where in the list of additional
+								images the thumbnail for the spin is shown.
+								Recommended: First.
+								]]>
+							</comment>
+						</gallery_position>
+						<thumbnail_url translate="label">
+							<label>Thumbnail URL</label>
+							<frontend_type>text</frontend_type>
+							<validate>required-entry</validate>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>
+								<![CDATA[
+								URL where spin thumbnails are hosted. Can be changed for a more consistent
+								brand experience, but default can be used.
+								Default is http://s3.amazonaws.com/spins.arqspin.com.
+								]]>
+							</comment>
+						</thumbnail_url>
+					</fields>
+                </arqballspin_general>
+            </groups>
+        </arqballspin>
+    </sections>
+</config>

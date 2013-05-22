@@ -1,0 +1,87 @@
+<?php
+/**
+* One Pica
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to codemaster@onepica.com so we can send you a copy immediately.
+*
+* @category OnePica
+* @package OnePica_ArqballSpin
+* @copyright Copyright (c) 2012 One Pica, Inc. (http://www.onepica.com)
+* @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+*/
+/**
+* One Pica Arqball Spin
+*
+* @category OnePica
+* @package OnePica_ArqballSpin
+* @author One Pica Codemaster codemaster@onepica.com
+*/
+class OnePica_ArqballSpin_Adminhtml_GridController extends Mage_Adminhtml_Controller_Action
+{
+
+    protected function _construct() {
+        $this->setUsedModuleName('OnePica_ArqballSpin');
+    }
+	
+	public function indexAction()
+    {
+        $this->loadLayout();
+        $this->renderLayout();
+    }
+	
+	public function listAction() {
+		$url			= 'https://api.arqspin.com/v2.0/spins/';
+		$searchString	= $this->getRequest()->getParam('searchString');
+		$config 		= Mage::getStoreConfig('arqballspin/arqballspin_general');
+		$product		= Mage::getModel('catalog/product')->load($this->getRequest()->getParam('id'));
+		$preId			= $product->getArqballspinId();
+		$res			= '';
+
+		if (isset($config)) {
+			$data = file_get_contents($url.$config['username'].(strlen($searchString) ? '?query='.$searchString : ''));
+			$data = json_decode($data, true);
+			if (isset($data['spins'])) {
+				foreach ($data['spins'] as $value) {
+					$res .= '<tr>';
+					$res .= '<td><input type="radio" name="product[arqballspin_id]" value="'.$value['shortid'].'"'.($value['shortid'] == $preId ? ' checked' : '').'></td>';
+					$res .= '<td>'.(strlen($value['shortid']) ? $value['shortid'] : '&nbsp;').'</td>';
+					$res .= '<td>'.(strlen($value['title']) ? Mage::helper('core/string')->truncate($value['title'], 100) : '&nbsp;').'</td>';
+					$res .= '<td><img src="'.$value['thumbnail'].'" width="100" class="arqball_spin_preview" shortid="'.$value['shortid'].'" /></td>';
+					$res .= '</tr>';
+				}
+			}
+		}
+		echo $this->getHeader().$res.$this->getFooter();
+		exit;
+	}
+	
+	public function getHeader() {
+		$res = '<table width="100%" border="1">';
+		$res .= '<tr>';
+		$res .= '<td width="20">&nbsp;</td>';
+		$res .= '<td width="100">ID</td>';
+		$res .= '<td>Title</td>';
+		$res .= '<td width="100">Thumbnail</td>';
+		$res .= '</tr>';
+
+		$res .= '<tr>';
+		$res .= '<td width="20"><input type="radio" name="product[arqballspin_id]" value="" checked></td>';
+		$res .= '<td width="100">&nbsp;</td>';
+		$res .= '<td>None</td>';
+		$res .= '<td width="100">&nbsp;</td>';
+		$res .= '</tr>';
+		return $res;
+	}
+	
+	public function getFooter() {
+		return '</table>';
+	}
+}

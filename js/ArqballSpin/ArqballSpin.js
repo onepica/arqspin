@@ -12,7 +12,11 @@ function ArqballSpin(param)
 				self.load(self.searchField.value);
 			}
 		}
-		this.load();
+		if (tab=document.getElementById(param.tabId)) {
+			tab.onclick=function() {
+				self.load(self.searchField.value);
+			}
+		}
 	}
 }
 

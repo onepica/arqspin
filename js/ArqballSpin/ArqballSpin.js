@@ -16,12 +16,13 @@ function ArqballSpin(param)
 	}
 }
 
-ArqballSpin.prototype.load = function(searchString='')
+ArqballSpin.prototype.load = function(searchString)
 {
 	var self=this;
-	new Ajax.Request(this.requestUrl+(searchString.length ? 'searchString/'+searchString+'/' : ''), {
-		method: 'get',
-		onComplete: function(data) {
+	new Ajax.Request(this.requestUrl+(searchString && searchString.length ? 'searchString/'+searchString+'/' : ''), {
+		method		: 'post',
+		data		: {},
+		onComplete	: function(data) {
 					self.container.innerHTML = data.responseText;
 					new ArqballSpinPreview({
 						containerId	: self.container.getAttribute('id')

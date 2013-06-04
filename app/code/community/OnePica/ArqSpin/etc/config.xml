@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* One Pica
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+* If you did not receive a copy of the license and are unable to
+* obtain it through the world-wide-web, please send an email
+* to codemaster@onepica.com so we can send you a copy immediately.
+*
+* @category OnePica
+* @package OnePica_ArqSpin
+* @copyright Copyright (c) 2012 One Pica, Inc. (http://www.onepica.com)
+* @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
+*/
+/**
+* One Pica ArqSpin
+*
+* @category OnePica
+* @package OnePica_ArqSpin
+* @author One Pica Codemaster codemaster@onepica.com
+*/
+ -->
+<config>
+    <modules>
+        <OnePica_ArqSpin>
+            <version>1.1.0</version>
+        </OnePica_ArqSpin>
+    </modules>
+	
+    <global>
+        <models>
+            <arqspin>
+                <class>OnePica_ArqSpin_Model</class>
+            </arqspin>
+			<catalog>
+				<rewrite>
+					<product>OnePica_ArqSpin_Model_Product</product>
+				</rewrite>
+			</catalog>
+        </models>
+		
+		<helpers>
+			<onepica_arqspin>
+				<class>OnePica_ArqSpin_Helper</class>
+			</onepica_arqspin>
+		</helpers>
+		
+		<blocks>
+			<arqspin>
+				<class>OnePica_ArqSpin_Block</class>
+			</arqspin>
+			
+			<catalog>
+				<rewrite>
+					<product_view_media>OnePica_ArqSpin_Block_Product_View_Media</product_view_media>
+				</rewrite>
+				<rewrite>
+					<product_gallery>OnePica_ArqSpin_Block_Product_Gallery</product_gallery>
+				</rewrite>
+			</catalog>
+			
+			<adminhtml>
+				<rewrite>
+					<catalog_product_edit_tabs>OnePica_ArqSpin_Block_Adminhtml_Tabs</catalog_product_edit_tabs>
+				</rewrite>
+			</adminhtml>
+		</blocks>
+		
+		<events>
+			<catalog_product_save_before>
+				<observers>
+					<arqspin>
+						<type>singleton</type>
+						<class>arqspin/observer</class>
+						<method>catalog_product_save_before</method>
+					</arqspin>
+				</observers>
+			</catalog_product_save_before>
+		</events>
+		
+		<resources>
+			<arqspin_records_setup>
+				<setup>
+					<module>OnePica_ArqSpin</module>
+					<class>OnePica_ArqSpin_Resource_Eav_Mysql4_Setup</class>
+				</setup>
+
+				<connection>
+					<use>core_setup</use>
+				</connection>
+			</arqspin_records_setup>
+
+			<arqspin_records_write>
+				<connection>
+					<use>core_write</use>
+				</connection>
+			</arqspin_records_write>
+
+			<arqspin_records_read>
+				<connection>
+					<use>core_read</use>
+				</connection>
+			</arqspin_records_read>
+		</resources>
+    </global>
+	
+	<admin>
+		<routers>
+			<adminhtml>
+				<args>
+					<modules>
+                        <arqspin before="Mage_Adminhtml">OnePica_ArqSpin_Adminhtml</arqspin>
+                    </modules>
+				</args>
+			</adminhtml>
+		</routers>
+	</admin>
+	
+	<adminhtml>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <arqspin translate="title">
+                                            <title>ArqSpin ACL</title>
+                                            <sort_order>100</sort_order>
+                                        </arqspin>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+		
+		<layout>
+			<updates>
+				<arqspin>
+					<file>arqspin.xml</file>
+				</arqspin>
+			</updates>
+		</layout>
+	</adminhtml>
+	
+	<frontend>
+		<layout>
+			<updates>
+				<arqspin>
+					<file>arqspin.xml</file>
+				</arqspin>
+			</updates>
+		</layout>
+	</frontend>
+	
+	<default>
+		<arqspin>
+			<arqspin_general>
+				<username></username>
+				<autoload>1</autoload>
+				<autorotate>1</autorotate>
+				<autostop>1</autostop>
+				<embed_type>iframe</embed_type>
+				<display_type>gallery</display_type>
+				<gallery_position>first</gallery_position>
+				<thumbnail_url>http://s3.amazonaws.com/spins.arqspin.com</thumbnail_url>
+			</arqspin_general>
+		</arqspin>
+	</default>
+</config>

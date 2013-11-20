@@ -66,7 +66,7 @@ class OnePica_ArqSpin_Model_Product extends Mage_Catalog_Model_Product
 		$image	= array(
 			'id'				=> $id,
 			'url'				=> $config['thumbnail_url'].'/'.$id.'/thumbnail.jpg',
-			'spin_url'			=> 	'http://arq.io/'.($config['embed_type'] == 'flash' ? 'f' : 'i').'/?spin='.$id.($config['autoload'] ? '&is=-0.16' : '').($config['autostop'] ? '' : '&ms=0.16'),
+			'spin_url'			=> 	'http://arq.io/'.($config['embed_type'] == 'flash' ? 'f' : 'i').'/?spin='.$id.($config['autoload'] ? '&is=-0.16' : '').($config['autostop'] ? '' : '&ms=0.16&L=1'),
 			'width'				=> 0,
 			'height'			=> 0,
 		);

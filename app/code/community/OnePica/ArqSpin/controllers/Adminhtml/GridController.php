@@ -38,7 +38,7 @@ class OnePica_ArqSpin_Adminhtml_GridController extends Mage_Adminhtml_Controller
     }
 	
 	public function listAction() {
-		$url			= 'https://api.arqspin.com/v2.0/spins/';
+		$url			= 'https://api.arqspin.com/v2.1/spins/';
 		$searchString	= $this->getRequest()->getParam('searchString');
 		$config 		= Mage::getStoreConfig('arqspin/arqspin_general');
 		$product		= Mage::getModel('catalog/product')->load($this->getRequest()->getParam('id'));

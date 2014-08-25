@@ -31,7 +31,7 @@
 		'group'							=> '',
 		'label'							=> 'ArqSpin Id',
 		'type'							=> 'varchar',
-		'input'							=> '',
+		'input'							=> 'text',
 		'default'						=> '',
 		'class'							=> '',
 		'backend'						=> '',

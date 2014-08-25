@@ -60,7 +60,7 @@ class OnePica_ArqSpin_Model_Product extends Mage_Catalog_Model_Product
 	
 	public function getArqspin()
 	{
-		$id		= $this->getArqballspinId();
+		$id		= $this->getData('arqspin_id');;
 		$config	= Mage::getStoreConfig('arqspin/arqspin_general');
 		if (!$id || !isset($config)) return false;
 		$image	= array(
